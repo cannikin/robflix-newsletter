@@ -88,8 +88,8 @@ if ENV['SEND']
   print 'Sending...'
 
   mail = Mail.new do
-    from    'Robflix <robflix@fastmail.com>'
-    to      'rob.cameron@fastmail.com'
+    from    ENV['EMAIL_FROM']
+    to      ENV['EMAIL_TO']
     bcc     emails
     subject "New releases for week of #{(Date.today - Date.today.wday).strftime('%B %e, %Y')}"
     html_part do
@@ -102,7 +102,7 @@ if ENV['SEND']
                           user_name: ENV['FASTMAIL_USERNAME'],
                           password: ENV['FASTMAIL_PASSWORD']
   end
-  # mail.deliver
+  mail.deliver
   print "sent to #{emails.size} people\n\n"
 end
 
