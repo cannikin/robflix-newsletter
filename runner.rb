@@ -17,7 +17,7 @@ unless ENV['PLEX_TOKEN']
   exit 1
 end
 
-puts "Starting at #{Date.today.to_s}\n"
+puts "Starting at #{Time.now.to_s}\n"
 
 unless ENV['SEND']
   puts "\nRun again with SEND=1 to actually send emails\n".yellow
