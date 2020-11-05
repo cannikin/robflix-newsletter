@@ -13,13 +13,14 @@
       </h2>
       <ul style="margin: 0.25rem 0; padding: 0; list-style: none; color: #aaaaaa;">
         <li style="display: inline-block; margin-right: 0.5rem; font-size: 80%"><%= year %></li>
+        <li style="display: inline-block; margin-right: 0.5rem; font-size: 80%"><%= genres.join(', ') %></li>
         <li style="display: inline-block; background-color: #aaaaaa; font-weight: 500; font-size: 70%; color: #ffffff; padding: 1px 4px; border-radius: 2px; margin: 0 0.5rem;"><%= contentRating %></li>
         <% unless rating.nil? or rating.empty? %>
           <li style="display: inline-block; margin: 0 0.5rem; font-size: 90%">
             <% if rating.to_f < 6.0 %>
-              <img style="width: 18px; vertical-align: top;" src="/images/tomatometer-rotten.svg" />
+              <img style="width: 18px; vertical-align: top;" src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/tomatometer-rotten.svg" />
             <% else %>
-              <img style="width: 18px; vertical-align: top;" src="/images/tomatometer-fresh.svg" />
+              <img style="width: 18px; vertical-align: top;" src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/tomatometer-fresh.svg" />
             <% end %>
             <%= (rating.to_f * 10).to_i %>%
           </li>
@@ -27,9 +28,9 @@
         <% unless audienceRating.nil? or audienceRating.empty? %>
           <li style="display: inline-block; margin-left: 0.5rem; font-size: 90%">
             <% if audienceRating.to_f < 6.0 %>
-              <img style="width: 18px; vertical-align: top;" src="/images/aud_score-rotten.svg" />
+              <img style="width: 18px; vertical-align: top;" src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/aud_score-rotten.svg" />
             <% else %>
-              <img style="width: 20px; vertical-align: top;" src="/images/aud_score-fresh.svg" />
+              <img style="width: 20px; vertical-align: top;" src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/aud_score-fresh.svg" />
             <% end %>
             <%= (audienceRating.to_f * 10).to_i %>%
           </li>

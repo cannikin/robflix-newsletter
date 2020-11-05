@@ -1,16 +1,17 @@
 <body style="background-color: #eeeeee; font-family: 'Helvetica Neue', Helvetica, sans-serif;">
+  <div style="width: 400px; margin: 1rem auto;">
+    <img src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/logo.png" style="max-width: 100%;">
+  </div>
   <div style="width: 650px; margin: 0 auto; padding: 2rem; background-color: #ffffff;">
     <header>
-      <h1 style="margin: 0; padding: 0">New Releases</h1>
-      <p style="margin: 1rem 0; font-weight: 400; font-size: 120%; color: #222222">
-        Hello Robflix subscribers!
-      </p>
-      <p style="margin: 1rem 0">Here's <%= count %> of the movies added in the past week.</p>
-      <p style="margin: 1rem 0; font-size: 100%; color: #999999; line-height: 1.4">
-        Robflix is big but we doesn't have every movie. Yet. If you want to help
+      <h1 style="margin: 0; padding: 0">Hello Robflix Subscribers!</h1>
+      <p style="margin: 1rem 0">Here's <%= recent_count %> of the movies/shows added in the past week.</p>
+      <p style="margin: 1rem 0; font-size: 90%; color: #999999; line-height: 1.4">
+        Robflix is big (<%= total_movie_count %> movies and <%= total_tv_count %> TV shows)
+        but we don't have everything. Yet. If you want to help
         expand the Robflix library you can pick up something from the
-        <a style="color: #336699" href="<%= ENV['WISHLIST_LINK'] %>">Robflix Wishlist</a>!
-        (And you can add to it if there's something you think everyone will love.)
+        <a style="color: #c51414" href="<%= ENV['WISHLIST_LINK'] %>">Robflix Wishlist</a>!
+        (And you can add to it if there's something you want to see.)
       </p>
     </header>
     <main>
