@@ -1,0 +1,27 @@
+<body style="background-color: #eeeeee; font-family: 'Helvetica Neue', Helvetica, sans-serif;">
+  <div style="width: 650px; margin: 0 auto; padding: 2rem; background-color: #ffffff;">
+    <header>
+      <h1 style="margin: 0; padding: 0">New Releases</h1>
+      <p style="margin: 1rem 0; font-weight: 400; font-size: 120%; color: #222222">
+        Hello Robflix subscribers!
+      </p>
+      <p style="margin: 1rem 0">Here's <%= count %> of the movies added in the past week.</p>
+      <p style="margin: 1rem 0; font-size: 100%; color: #999999; line-height: 1.4">
+        Robflix is big but we doesn't have every movie. Yet. If you want to help
+        expand the Robflix library you can pick up something from the
+        <a style="color: #336699" href="<%= ENV['WISHLIST_LINK'] %>">Robflix Wishlist</a>!
+        (And you can add to it if there's something you think everyone will love.)
+      </p>
+    </header>
+    <main>
+      <% movies.each do |movie| %>
+        <div style="margin: 2rem 0">
+          <%= movie %>
+        </div>
+      <% end %>
+    </main>
+    <footer>
+
+    </footer>
+  </div>
+</body>
