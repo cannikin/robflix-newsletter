@@ -17,6 +17,8 @@ unless ENV['PLEX_TOKEN']
   exit 1
 end
 
+puts "Starting at #{Date.today.to_s}\n"
+
 unless ENV['SEND']
   puts "\nRun again with SEND=1 to actually send emails\n".yellow
 end
@@ -100,7 +102,7 @@ if ENV['SEND']
                           user_name: ENV['FASTMAIL_USERNAME'],
                           password: ENV['FASTMAIL_PASSWORD']
   end
-  mail.deliver
+  # mail.deliver
   print "sent to #{emails.size} people\n\n"
 end
 
