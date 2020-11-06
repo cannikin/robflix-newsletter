@@ -1,9 +1,11 @@
-<body style="background-color: #eeeeee; font-family: 'Helvetica Neue', Helvetica, sans-serif;">
-  <div style="width: 400px; margin: 0 auto; padding: 1rem;">
-    <img src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/robflix-logo.png" style="max-width: 100%;">
-  </div>
-  <div style="width: 650px; margin: 0 auto; padding: 2rem; background-color: #ffffff;">
-    <header>
+<body style="font-size: 100%; margin: 2rem; background-color: #eeeeee; font-family: 'Helvetica Neue', Helvetica, sans-serif;">
+  <header>
+    <div style="max-width: 400px; margin: 0 auto; padding: 1rem 0 2rem">
+      <img src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/robflix-logo.png" style="max-width: 100%;">
+    </div>
+  </header>
+  <div style="max-width: 650px; margin: 0 auto; background-color: #ffffff">
+    <div style="margin: 0 2rem; padding: 2rem 0;">
       <h1 style="margin: 0; padding: 0">Hello Robflix Subscribers!</h1>
       <p style="margin: 1rem 0">Here's <%= recent_count %> of the movies/shows added in the past week.</p>
       <p style="margin: 1rem 0; font-size: 90%; color: #999999; line-height: 1.4">
@@ -13,16 +15,12 @@
         <a style="color: #c51414" href="<%= ENV['WISHLIST_LINK'] %>">Robflix Wishlist</a>!
         (And you can add to it if there's something you want to see.)
       </p>
-    </header>
-    <main>
+
       <% movies.each do |movie| %>
         <div style="margin: 2rem 0">
           <%= movie %>
         </div>
       <% end %>
-    </main>
-    <footer>
-
-    </footer>
+    </div>
   </div>
 </body>
