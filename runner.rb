@@ -78,7 +78,7 @@ end
 puts "Wrote index.html"
 
 if ENV['SEND']
-  puts "Sending to #{emails.join(', ')}..."
+  puts "Sending to #{ENV['DEBUG'] ? ENV['EMAIL_TO'] : emails.join(', ')}..."
   print "Press Ctrl-C to cancel in next 5 seconds".yellow
   5.times do
     sleep 1
@@ -90,7 +90,7 @@ if ENV['SEND']
   mail = Mail.new do
     from    ENV['EMAIL_FROM']
     to      ENV['EMAIL_TO']
-    bcc     emails
+    bcc     emails unless ENV['DEBUG']
     subject "New releases for week of #{(Date.today - Date.today.wday).strftime('%B %e, %Y')}"
     html_part do
       content_type 'text/html; charset=UTF-8'
@@ -103,6 +103,8 @@ if ENV['SEND']
                           password: ENV['FASTMAIL_PASSWORD']
   end
   mail.deliver
-  print "sent to #{emails.size} people\n\n"
+  print "sent to #{ENV['DEBUG'] ? 1 : emails.size} people\n\n"
+else
+  puts "Run with SEND=1 DEBUG=1 to send email only to Rob".yellow
 end
 
