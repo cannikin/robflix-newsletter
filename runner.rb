@@ -6,6 +6,9 @@ require 'ostruct'
 require 'mail'
 require 'colorize'
 
+# Salo
+SKIP = [15794]
+
 class OpenStruct
   def get_binding
     binding()
@@ -54,9 +57,10 @@ movies = data[:MediaContainer][:Video]
 
 movies_html = movies.collect do |movie|
   added_at = Time.at(movie[:addedAt].to_i)
-  genres = [movie[:Genre]].flatten.collect { |g| g[:tag] }
+  genres = [movie[:Genre]].flatten.collect { |g| g[:tag] } rescue []
+  id = movie[:Media][:id].to_i
 
-  if added_at > RECENT_SINCE
+  if added_at > RECENT_SINCE and !SKIP.include?(id)
     movie_struct = OpenStruct.new(movie.merge(:genres => genres))
     output = movie_template.result(movie_struct.get_binding)
   end
