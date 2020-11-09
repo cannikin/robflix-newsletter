@@ -1,28 +1,191 @@
 <html>
-<body bgcolor="#eeeeee" style="width: 100%; margin: 0; padding: 0; font-size: 100%; background-color: #eeeeee; font-family: 'Helvetica Neue', Helvetica, sans-serif;">
-  <header style="width: 100%">
-    <div style="width: 400px; margin: 0 auto; padding: 1rem 0 2rem">
-      <img src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/robflix-logo.png" style="max-width: 100%;">
+<head>
+<meta name="viewport" content="width=device-width">
+
+<style type="text/css">
+  html {
+    width: 100%;
+  }
+  body {
+    width: 100%;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: #eeeeee;
+    color: #000000;
+  }
+  img {
+    max-width: 100%;
+  }
+  h1, h2 {
+    margin: 0;
+    padding: 0;
+  }
+  p {
+    line-height: 1.4;
+  }
+  header, main {
+    width: 650px;
+    margin: 0 auto;
+  }
+  header {
+    padding: 1rem 0;
+  }
+  .logo {
+    width: 400px;
+    margin: 0 auto;
+  }
+  main {
+    background-color: #ffffff;
+    border-radius: 4px;
+  }
+  .intro {
+    text-align: center;
+    padding-top: 2rem;
+    margin-bottom: 4rem;
+  }
+  .intro h2 {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+  .intro p {
+    margin: 1rem 0;
+    text-align: left;
+    padding: 0 2rem;
+  }
+  .movie {
+    margin: 3rem 0;
+    padding: 0 2rem;
+    display: flex;
+    align-items: start;
+    flex: none;
+  }
+  a {
+    color: #c51414;
+    text-decoration: none;
+  }
+  .title a {
+    color: #000000;
+  }
+  .poster, .text {
+  }
+  .poster {
+    padding-right: 1rem;
+    width: 125px;
+    flex-shrink: 0
+  }
+  .text {
+    width: 525px;
+    flex-grow: 1;
+    text-align: left;
+  }
+  .text h2 {
+    margin-top: 0;
+  }
+  .meta {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #aaaaaa;
+    font-size: 0.9rem;
+  }
+  .meta li {
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
+  .meta li:first-child {
+    margin-left: 0;
+  }
+  .meta li:last-child {
+    margin-right: 0;
+  }
+  .meta img {
+    width: 18px;
+    vertical-align: middle;
+  }
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    html {
+      width: 100%;
+    }
+    header, main {
+      width: 100%;
+      margin: 1rem 0;
+      padding-top: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+    .logo {
+      width: 300px;
+    }
+    .intro {
+      padding: 0;
+    }
+    .intro h2 {
+      margin: 1rem 2rem;
+    }
+    .intro p {
+      margin: 2rem 0;
+    }
+    .movie {
+      display: block;
+      padding: 2rem;
+    }
+    .poster {
+      flex: none;
+      width: 200px;
+      margin: 0 auto;
+    }
+    .text {
+      flex: none;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .title {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 1.7rem;
+    }
+    .meta {
+      text-align: center;
+      font-size: 1rem;
+    }
+    .summary {
+      margin-top: 1rem;
+    }
+  }
+</style>
+</head>
+<body bgcolor="#eeeeee">
+  <header>
+    <div class="logo">
+      <img src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/robflix-logo.png">
     </div>
   </header>
-  <div style="width: 600px; margin: 0 auto; padding: 0 2rem; border: 1px solid #990000">
-    <div style="background-color: #ffffff; padding: 2rem; border: 1px solid #009900">
-      <h1 style="margin: 0; padding: 0">Hello Robflix Subscribers!</h1>
-      <p style="margin: 1rem 0">Here's <%= recent_count %> of the movies/shows added in the past week.</p>
-      <p style="margin: 1rem 0; font-size: 90%; color: #999999; line-height: 1.4">
-        Robflix is big (<%= total_movie_count %> movies and <%= total_tv_count %> TV shows)
-        but we don't have everything. Yet. If you want to help
-        expand the Robflix library you can pick up something from the
-        <a style="color: #c51414" href="<%= ENV['WISHLIST_LINK'] %>">Robflix Wishlist</a>!
-        (And you can add to it if there's something you want to see.)
-      </p>
+
+  <main>
+    <div>
+      <div class="intro">
+        <h1>Hello Robflix Subscribers!</h1>
+        <h2>Here's <%= recent_count %> of the movies/shows added in the past week.</h2>
+        <p>
+          Robflix is big (<%= total_movie_count %> movies and <%= total_tv_count %> TV shows)
+          but we don't have everything. Yet. If you want to help
+          expand the Robflix library you can pick up something from the
+          <a href="<%= ENV['WISHLIST_LINK'] %>">Robflix Wishlist</a>!
+          (And you can add to it if there's something you want to see.)
+        </p>
+      </div>
 
       <% movies.each do |movie| %>
-        <div style="margin: 2rem 0">
+        <div class="movie">
           <%= movie %>
         </div>
       <% end %>
     </div>
-  </div>
+  </main>
 </body>
 </html>
