@@ -1,11 +1,12 @@
-<body style="font-size: 100%; margin: 2rem; background-color: #eeeeee; font-family: 'Helvetica Neue', Helvetica, sans-serif;">
-  <header>
-    <div style="max-width: 400px; margin: 0 auto; padding: 1rem 0 2rem">
+<html>
+<body bgcolor="#eeeeee" style="width: 100%; margin: 0; padding: 0; font-size: 100%; background-color: #eeeeee; font-family: 'Helvetica Neue', Helvetica, sans-serif;">
+  <header style="width: 100%">
+    <div style="width: 400px; margin: 0 auto; padding: 1rem 0 2rem">
       <img src="<%= ENV['PUBLIC_IMAGE_HOSTNAME'] %>/images/robflix-logo.png" style="max-width: 100%;">
     </div>
   </header>
-  <div style="max-width: 650px; margin: 0 auto; background-color: #ffffff">
-    <div style="margin: 0 2rem; padding: 2rem 0;">
+  <div style="width: 600px; margin: 0 auto; padding: 0 2rem; border: 1px solid #990000">
+    <div style="background-color: #ffffff; padding: 2rem; border: 1px solid #009900">
       <h1 style="margin: 0; padding: 0">Hello Robflix Subscribers!</h1>
       <p style="margin: 1rem 0">Here's <%= recent_count %> of the movies/shows added in the past week.</p>
       <p style="margin: 1rem 0; font-size: 90%; color: #999999; line-height: 1.4">
@@ -24,3 +25,4 @@
     </div>
   </div>
 </body>
+</html>
