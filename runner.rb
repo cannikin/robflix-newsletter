@@ -6,8 +6,7 @@ require 'ostruct'
 require 'mail'
 require 'colorize'
 
-# Salo
-SKIP = [15794]
+SKIP = [15794, 17278, 17271]
 
 class OpenStruct
   def get_binding
