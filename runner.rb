@@ -57,7 +57,11 @@ movies = data[:MediaContainer][:Video]
 movies_html = movies.collect do |movie|
   added_at = Time.at(movie[:addedAt].to_i)
   genres = [movie[:Genre]].flatten.collect { |g| g[:tag] } rescue []
-  id = movie[:Media][:id].to_i
+  id = if movie[:Media].kind_of? Array
+    movie[:Media].first[:id].to_i
+  else
+    movie[:Media][:id].to_i
+  end
 
   if added_at > RECENT_SINCE and !SKIP.include?(id)
     movie_struct = OpenStruct.new(movie.merge(:genres => genres))
