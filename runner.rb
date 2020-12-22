@@ -7,6 +7,11 @@ require 'mail'
 require 'colorize'
 
 SKIP = [15794, 17278, 17271]
+DEFAULT_MOTD = %Q{<h1>Hello Robflix Subscribers!</h1>
+<h2>Here's <%= recent_count %> of the movies/shows added in the past week.</h2>
+<p>
+  Robflix is big (<%= total_movie_count %> movies and <%= total_tv_count %> TV shows) but we don't have everything. Yet. If you want to help expand the Robflix library you can pick up something from the <a href="<%= ENV['WISHLIST_LINK'] %>">Robflix Wishlist</a>! (And you can add to it if there's something you want to see.)
+</p>}
 
 class OpenStruct
   def get_binding
@@ -29,6 +34,7 @@ RECENT_SINCE = (Date.today - 7).to_time
 
 movie_template = ERB.new(File.read('templates/movie.html.erb'))
 index_template = ERB.new(File.read('templates/index.html.erb'))
+motd_template = File.read('./motd').chomp.empty? ? ERB.new(DEFAULT_MOTD) : ERB.new(File.read('./motd'))
 
 # email addresses
 response = HTTP.get("#{ENV['PLEX_HOSTNAME']}/api/users?X-Plex-Token=#{ENV['PLEX_TOKEN']}")
@@ -69,11 +75,18 @@ movies_html = movies.collect do |movie|
   end
 end.compact
 
-index_struct = OpenStruct.new(
-  movies: movies_html,
+# sub movie/tv counts into MOTD
+motd_struct = OpenStruct.new(
   total_movie_count: total_movie_count,
   total_tv_count: total_tv_count,
   recent_count: movies_html.size
+)
+motd_html = motd_template.result(motd_struct.get_binding)
+
+# sub everything else into the index template
+index_struct = OpenStruct.new(
+  movies: movies_html,
+  motd: motd_html
 )
 index_html = index_template.result(index_struct.get_binding)
 
@@ -104,13 +117,18 @@ if ENV['SEND']
       body index_html
     end
     delivery_method :smtp, address: ENV['FASTMAIL_HOSTNAME'],
-                          port: ENV['FASTMAIL_PORT'],
-                          enable_ssl: true,
-                          user_name: ENV['FASTMAIL_USERNAME'],
-                          password: ENV['FASTMAIL_PASSWORD']
+                           port: ENV['FASTMAIL_PORT'],
+                           enable_ssl: true,
+                           user_name: ENV['FASTMAIL_USERNAME'],
+                           password: ENV['FASTMAIL_PASSWORD']
   end
   mail.deliver
   print "sent to #{ENV['DEBUG'] ? 1 : emails.size} people\n\n"
+
+  unless ENV['DEBUG']
+    File.open('./motd', 'w') { |file| file.puts '' }
+    puts "Clearing out MOTD for next time"
+  end
 else
   puts "Run with SEND=1 DEBUG=1 to send email only to Rob".yellow
 end

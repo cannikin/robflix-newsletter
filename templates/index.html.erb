@@ -169,15 +169,7 @@
   <main>
     <div>
       <div class="intro">
-        <h1>Hello Robflix Subscribers!</h1>
-        <h2>Here's <%= recent_count %> of the movies/shows added in the past week.</h2>
-        <p>
-          Robflix is big (<%= total_movie_count %> movies and <%= total_tv_count %> TV shows)
-          but we don't have everything. Yet. If you want to help
-          expand the Robflix library you can pick up something from the
-          <a href="<%= ENV['WISHLIST_LINK'] %>">Robflix Wishlist</a>!
-          (And you can add to it if there's something you want to see.)
-        </p>
+        <%= motd %>
       </div>
 
       <% movies.each do |movie| %>
