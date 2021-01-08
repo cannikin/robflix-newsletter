@@ -26,9 +26,13 @@ The default MOTD is:
 
 ## Testing
 
+    DEBUG=1 ruby ./runner.rb
+    
+Writes newsletter content out to index.html file in home directory.
+
     DEBUG=1 SEND=1 ruby ./runner.rb
     
-Sends a single email to my Gmail account.
+Sends a real email but only to my Gmail account.
 
 ## Sending for Real
 
