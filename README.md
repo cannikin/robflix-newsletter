@@ -1,6 +1,6 @@
 # Robflix Newsletter
 
-Aggregates new content added to Plex in the 7 days or so and sends a newsletter to users.
+Aggregates new content added to Plex in the last 7 days or so and sends a newsletter to users.
 
 ![image](https://user-images.githubusercontent.com/300/104048036-7d5b9e80-5197-11eb-9c55-bad8bd6a37d3.png)
 
