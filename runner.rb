@@ -6,7 +6,9 @@ require 'ostruct'
 require 'mail'
 require 'colorize'
 
-SKIP = [15794, 17278, 17271, 23554, 23536]
+# Get ID from <Media id=> field
+SKIP = [15794, 17278, 17271, 23554, 23536, 59920, 59923]
+
 DEFAULT_MOTD = %Q{<h1>Hello Robflix Subscribers!</h1>
 <h2>Here's <%= recent_count %> of the movies/shows added in the past week.</h2>
 <p>
