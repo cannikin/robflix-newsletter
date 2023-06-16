@@ -77,6 +77,12 @@ movies_html = movies.collect do |movie|
   end
 end.compact
 
+# don't send if no new movies
+if movies_html.size === 0
+  puts "No new movies, exiting".yellow
+  exit 0
+end
+
 # sub movie/tv counts into MOTD
 motd_struct = OpenStruct.new(
   total_movie_count: total_movie_count,
